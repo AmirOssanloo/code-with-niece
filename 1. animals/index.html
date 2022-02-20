@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+  <title>Animals</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      display: block;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      width: inherit;
+      height: inherit;
+      background-image: linear-gradient(180deg, #19bdff, #a5e5ff);
+      background-size: contain;
+    }
+
+    #ground {
+      position: absolute;
+      display: block;
+      background-color: green;
+      width: 100%;
+      height: 100px;
+      bottom: 0;
+    }
+
+    #ground_rock {
+      position: absolute;
+      bottom: 98px;
+    }
+
+    #ground_tree {
+      position: absolute;
+      transform: scale(2, 2);
+      left: 250px;
+      bottom: 184px;
+    }
+
+    #character_fox {
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+    }
+
+    #character_frog {
+      position: absolute;
+      width: 108px;
+      height: 98px;
+      bottom: 100px;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <header id="header"></header>
+    <div id="ground"></div>
+    <img id="ground_rock" src="./props/rock_5.png" />
+    <img id="ground_tree" src="./props/tree_2.png" />
+    <img id="character_fox" src="./props/fox.png" />
+    <img id="character_frog" src="./props/frog.png" />
+  </div>
+
+  <script>
+    const fox = document.getElementById("character_fox")
+    let foxSpeed = 30
+    let foxPosition = 0
+
+    const frog = document.getElementById("character_frog")
+    let frogSpeed = -30
+    let frogPosition = 100
+    
+    const onKeyDown = (e) => {
+      console.log(e.keyCode)
+
+      if (e.keyCode === 39) {
+        foxPosition += foxSpeed;
+        fox.style.transform = "scale(-1, 1)";
+      }
+
+      if (e.keyCode === 37) {
+        foxPosition -= foxSpeed
+        fox.style.transform = "scale(1, 1)";
+      }
+
+      if (e.keyCode === 38) {
+        frogPosition -= frogSpeed
+      }
+
+      if (e.keyCode === 40) {
+        if (frogPosition >= 120) {
+          frogPosition += frogSpeed
+        }
+      }
+
+      fox.style.left = `${foxPosition}px`
+      frog.style.bottom = `${frogPosition}px`
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+  </script>
+</body>
+</html>
